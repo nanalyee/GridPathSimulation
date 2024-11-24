@@ -52,13 +52,13 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "URL")
     FString LogUrl;
 
+    TArray<AGridCell*> mTargetCells; // 목적지 셀 목록
     
 
 private:
     TArray<int32> mFibonacciSequence; // 피보나치 수열 저장
     TArray<int32> mRandomIdMovingObject; // 이동체 랜덤 ID 설정
     TArray<AMovingObject*> mMovingObjects; // 생성된 이동체 목록
-    TArray<AGridCell*> mTargetCells; // 목적지 셀 목록
     FTimerHandle mSpawnTimerHandle;   // 타이머 핸들
     int32 mCurrentSpawnCnt; // 현재 스폰 중인 mMovingObjects 인덱스
     

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GridCell.h"
 #include "MovingObject.generated.h"
 
 UCLASS()
@@ -33,6 +34,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving Object")
     float mRotationSpeed;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Moving Object")
+    AGridCell* mTargetCell;
 
     // 이동체 실시간 정보
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Moving Object")
@@ -68,6 +72,7 @@ public:
     void SetTargetPos(FVector2D NewTargetPos);
     void SetPath(const TArray<FVector2D>& NewPath, int32 CellInterval);
     void SetLogUrl(FString Url);
+    void SetTargetCell(AGridCell* TargetCell);
 
     // 이동 시작 함수
     void StartMoving();

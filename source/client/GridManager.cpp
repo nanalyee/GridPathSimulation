@@ -282,6 +282,14 @@ void AGridManager::SpawnMovingObject(int32 MovingObjectID, int32 TargetPosX, int
         SpawnParams
     );
 
+    int32 targetIndex = -1;
+    for (int32 Index = 0; Index < mTargetCells.Num(); ++Index)
+    {
+        if (mTargetCells[Index] != nullptr && mTargetCells[Index]->mTargetID == MovingObjectID)
+        {
+            targetIndex = Index;
+        }
+    }
     if (NewMovingObject)
     {
         NewMovingObject->SetID(MovingObjectID);
@@ -289,6 +297,7 @@ void AGridManager::SpawnMovingObject(int32 MovingObjectID, int32 TargetPosX, int
         NewMovingObject->SetInitialPos(FVector2D(initialPosX, initialPosY));
         NewMovingObject->SetTargetPos(FVector2D(TargetPosX, TargetPosY));
         NewMovingObject->SetLogUrl(LogUrl);
+        NewMovingObject->SetTargetCell(mTargetCells[targetIndex]);
         mMovingObjects.Add(NewMovingObject);
 
         UE_LOG(LogTemp, Log, TEXT("Moving Object %d created at (%d, %d) targeting (%d, %d) real pos (%d, %d)"),

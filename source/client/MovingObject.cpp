@@ -1,6 +1,7 @@
 #include "MovingObject.h"
 #include "TimerManager.h"
 #include "Engine/World.h"
+#include "GridManager.h"
 
 #include "HttpModule.h"  // FHttpModule을 위해 필요
 #include "Http.h"        // IHttpRequest, IHttpResponse를 위해 필요
@@ -73,6 +74,11 @@ void AMovingObject::SetLogUrl(FString Url)
     LogUrl = Url;
 }
 
+void AMovingObject::SetTargetCell(AGridCell* TargetCell)
+{
+    mTargetCell = TargetCell;
+}
+
 void AMovingObject::StartMoving()
 {
     mStartTime = FDateTime::Now(); // 시작 시간 기록
@@ -105,9 +111,14 @@ void AMovingObject::TickMove(float DeltaTime)
         UE_LOG(LogTemp, Log, TEXT("Moving Object %d reached final target."), mID);
         mEndTime = FDateTime::Now();
         FString LogMessage = FString::Printf(TEXT("Moving Object %d started at %s reached the final target at %s"), mID, *mStartTime.ToString(), *mEndTime.ToString());
-        PostLogMessage(LogMessage);  
-        Destroy(); // 이동체 제거
+        PostLogMessage(LogMessage);
         bIsMoving = false;
+
+        if (mTargetCell) {
+            mTargetCell->Destroy();
+            mTargetCell = nullptr; // 선택적: 파괴 후 포인터를 null로 설정
+        }
+        Destroy(); // 이동체 제거
         return;
     }
 
