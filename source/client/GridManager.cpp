@@ -203,43 +203,6 @@ void AGridManager::InitializeFibonacciSequence()
     }
 }
 
-/*
-// 이동체에 랜덤 목표 할당
-TMap<int32, int32> AGridManager::AssignRandomTargets(const TArray<AGridCell*>& InputTargetCells)
-{
-    TMap<int32, int32> Mapping;
-
-    if (InputTargetCells.Num() == 0)
-    {
-        UE_LOG(LogTemp, Error, TEXT("No target cells available for mapping!"));
-        return Mapping;
-    }
-
-    // 목적지 ID 목록 생성
-    TArray<int32> TargetIDs;
-    for (int32 i = 0; i < InputTargetCells.Num(); ++i)
-    {
-        TargetIDs.Add(i + 1); // ID는 1부터 시작
-    }
-
-    // 랜덤 셔플
-    for (int32 i = TargetIDs.Num() - 1; i > 0; --i)
-    {
-        int32 RandomIndex = FMath::RandRange(0, i);
-        TargetIDs.Swap(i, RandomIndex);
-    }
-
-    // 매핑 생성
-    for (int32 i = 0; i < TargetIDs.Num(); ++i)
-    {
-        Mapping.Add(i + 1, TargetIDs[i]);
-        UE_LOG(LogTemp, Log, TEXT("Moving Object ID %d mapped to Target ID %d"), i + 1, TargetIDs[i]);
-    }
-
-    return Mapping;
-}
-*/
-
 // 4) 그리드 마지막 행에 N 개의 이동체(M)를 생성한다. (시나리오 참고)
 // 다음 이동체 생성 예약
 void AGridManager::ScheduleNextSpawn()
