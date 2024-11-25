@@ -1,5 +1,5 @@
 # GridPathSimulation
-GridPathSimulation
+서버/클라이언트 구조의 그리드 기반 경로탐색 이동체 시뮬레이터 구현
 
 ## 목차
 ![슬라이드2](https://github.com/user-attachments/assets/77514876-1055-45ef-a02e-30f54cfb136e)
